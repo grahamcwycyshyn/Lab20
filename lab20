@@ -1,0 +1,39 @@
+-- 1
+SELECT * FROM northwind.customers;
+-- 2
+SELECT DISTINCT Country FROM northwind.customers;
+-- 3
+SELECT *  FROM northwind.customers WHERE customerid LIKE 'bl%';
+-- 4
+SELECT * FROM northwind.orders LIMIT 100;
+-- 5
+SELECT * FROM northwind.customers WHERE PostalCode = '1010' OR PostalCode = '3012' OR PostalCode = '12209' OR PostalCode = '05023';
+-- 6
+SELECT * FROM northwind.orders WHERE ShipRegion IS NOT null;
+-- 7
+SELECT * FROM northwind.customers ORDER BY country, city;
+-- 8
+INSERT INTO northwind.customers(customerid, companyname) VALUE('267', 'Bills Company');
+-- 9
+UPDATE northwind.orders SET ShipRegion='EuroZone' WHERE shipcountry='France';
+-- 10
+ DELETE FROM northwind.`order details` WHERE quantity=1;
+-- 11
+SELECT AVG(quantity) AS AveragePrice FROM northwind.`order details`;
+SELECT MAX(quantity) AS AveragePrice FROM northwind.`order details`;
+SELECT MIN(quantity) AS AveragePrice FROM northwind.`order details`;
+-- 12
+SELECT orderid, AVG(quantity) 'Average Quantity' FROM northwind.`order details` GROUP BY orderid;
+SELECT orderid, MAX(quantity) 'Maximum Quantity' FROM northwind.`order details` GROUP BY orderid;
+SELECT orderid, MIN(quantity) 'Minimum Quantity' FROM northwind.`order details` GROUP BY orderid;
+-- 13
+SELECT customerid FROM northwind.orders WHERE orderid=10290;
+-- 14
+SELECT * FROM northwind.orders INNER JOIN northwind.customers ON orders.customerid = customers.customerid;
+SELECT * FROM northwind.orders LEFT JOIN northwind.customers ON orders.customerid = customers.customerid;
+SELECT * FROM northwind.orders RIGHT JOIN northwind.customers ON orders.customerid = customers.customerid;
+-- 15
+SELECT firstname FROM northwind.employees WHERE ReportsTo IS null;
+-- 16
+SELECT firstname FROM northwind.employees WHERE ReportsTo='2';
+
